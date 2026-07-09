@@ -1,0 +1,8 @@
+{{/* Footnote modal dialog — rendered on every page, JS is a no-op if no footnotes */}}
+<dialog class="fn-modal" aria-label="Footnote">
+  <div class="fn-modal-content"></div>
+</dialog>
+
+{{ with resources.Get "footnote-modal.js" | resources.Minify }}
+  <script>{{ .Content | safeJS }}</script>
+{{ end }}
