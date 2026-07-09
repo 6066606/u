@@ -7,6 +7,10 @@
     items[li.id] = li.innerHTML;
   });
 
+  var heading = document.getElementById("footnotes");
+  if (heading) heading.remove();
+  section.remove();
+
   var dialog = document.querySelector(".fn-modal");
   if (!dialog) return;
 
