@@ -1,10 +1,10 @@
 ---
-title: "Portfolio Preparation Guide for Backend Engineer at Vimeo.com"
+title: "Portfolio Preparation Guide for Backend Engineer at Vimeo"
 date: 2026-07-09
 weight: 2
 ---
 
-# Portfolio Preparation Guide for Backend Engineer at Vimeo.com
+# Portfolio Preparation Guide for Backend Engineer at Vimeo
 
 ## Table of Contents
 
