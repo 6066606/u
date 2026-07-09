@@ -1,4 +1,31 @@
-/* You can add custom styles here. */
+/* Custom styles — Radix UI-inspired dark theme (Slate + Blue accent) */
+
+@mixin theme-radix-dark {
+  --body-background: #111113;
+  --body-background-tint: none;
+  --body-font-color: #edeef0;
+
+  --color-link: #70b8ff;
+  --color-visited-link: #b1a9ff;
+
+  --icon-filter: brightness(0) invert(1);
+
+  --gray-100: #151725;
+  --gray-200: #1e2029;
+  --gray-500: #b0b4ba;
+
+  --color-accent-default: #ffe629;
+  --color-accent-note: #0090ff;
+  --color-accent-tip: #30a46c;
+  --color-accent-important: #6e56cf;
+  --color-accent-warning: #f76b15;
+  --color-accent-caution: #e5484d;
+
+  // Fallback for {{< hint >}} shortcodes
+  --color-accent-info: #0090ff;
+  --color-accent-success: #30a46c;
+  --color-accent-danger: #e5484d;
+}
 
 // @import "plugins/numbered";
 // @import "plugins/scrollbars";
