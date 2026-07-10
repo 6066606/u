@@ -1,3 +1,25 @@
+/* Performance overrides */
+body {
+  text-rendering: auto; // ponytail: optimizeLegibility is expensive on large pages
+}
+
+.markdown {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500vh; // scrollbar hint for off-screen content
+}
+
+// Remove permanent will-change from sidebars; only needed during mobile slide animation
+.book-menu-content,
+.book-toc-content {
+  will-change: auto;
+}
+@media screen and (max-width: 56rem) {
+  #menu-control:checked ~ main .book-menu .book-menu-content,
+  #toc-control:checked ~ main .book-toc .book-toc-content {
+    will-change: transform;
+  }
+}
+
 /* Custom styles — Radix UI-inspired dark theme (Slate + Blue accent) */
 
 @mixin theme-radix-dark {
