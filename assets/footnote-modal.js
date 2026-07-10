@@ -24,14 +24,24 @@
     if (!html) return;
     content.innerHTML = html;
     document.body.style.overflow = "hidden";
-    dialog.showModal();
+    dialog.showPopover();
   });
 
   dialog.addEventListener("click", function (e) {
-    if (e.target === dialog) dialog.close();
+    if (e.target === dialog) {
+      dialog.hidePopover();
+    }
   });
 
-  dialog.addEventListener("close", function () {
-    document.body.style.overflow = "";
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && dialog.matches(":popover-open")) {
+      dialog.hidePopover();
+    }
+  });
+
+  dialog.addEventListener("toggle", function (e) {
+    if (e.newState === "closed") {
+      document.body.style.overflow = "";
+    }
   });
 })();
