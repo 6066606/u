@@ -13,17 +13,18 @@
 
   var dialog = document.querySelector(".fn-modal");
   if (!dialog) return;
+  var content = dialog.querySelector(".fn-modal-content");
 
-  document.querySelectorAll("a[href^='#fn:']").forEach(function (link) {
-    link.addEventListener("click", function (e) {
-      e.preventDefault();
-      var id = decodeURIComponent(link.getAttribute("href").slice(1));
-      var html = items[id];
-      if (!html) return;
-      dialog.querySelector(".fn-modal-content").innerHTML = html;
-      document.body.style.overflow = "hidden";
-      dialog.showModal();
-    });
+  document.addEventListener("click", function (e) {
+    var link = e.target.closest("a[href^='#fn:']");
+    if (!link) return;
+    e.preventDefault();
+    var id = decodeURIComponent(link.getAttribute("href").slice(1));
+    var html = items[id];
+    if (!html) return;
+    content.innerHTML = html;
+    document.body.style.overflow = "hidden";
+    dialog.showModal();
   });
 
   dialog.addEventListener("click", function (e) {
