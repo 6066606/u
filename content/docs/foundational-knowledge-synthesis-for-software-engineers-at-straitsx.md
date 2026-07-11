@@ -1,11 +1,11 @@
 ---
-title: "Foundational Knowledge Synthesis for Software Engineers at StraitsX"
+title: "Foundational Knowledge Synthesis for Software Engineers at StraitsX (Card Issuing)"
 date: 2026-07-09
 weight: 3
 bookHidden: true
 ---
 
-# Foundational Knowledge Synthesis for Software Engineers at StraitsX
+# Foundational Knowledge Synthesis for Software Engineers at StraitsX (Card Issuing)
 
 ## Table of Contents
 
