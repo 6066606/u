@@ -1139,44 +1139,38 @@ Medium-high. This project shows you can measure and reason about performance sys
 
 5. **Consider intermediate roles.** If the Low-Level Systems role feels out of reach initially, consider applying for Systems Automation/Python or C++/Python mixed roles first, then rotating internally (HRT encourages this[^12]).
 
----
-
-## References
-
-| # | Source | URL |
-|---|--------|-----|
-| [^1] | RAII - cppreference.com | en.cppreference.com/cpp/language/raii |
-| [^2] | mmap(2) - Linux man page | man7.org/linux/man-pages/man2/mmap.2.html |
-| [^3] | malloc(3) - Linux man page | man7.org/linux/man-pages/man3/malloc.3.html |
-| [^4] | Huge Pages - HRT Beat | hudsonrivertrading.com/hrtbeat/low-latency-optimization-part-1 |
-| [^5] | HRT Huge Pages Blog Post | hudsonrivertrading.com/hrtbeat/low-latency-optimization-part-1 |
-| [^6] | TLB - Wikipedia | en.wikipedia.org/wiki/Translation_lookaside_buffer |
-| [^7] | CPU Caches - Ulrich Drepper | people.freebsd.org/~lstewart/articles/cpumemory.pdf |
-| [^8] | Thread-local storage - cppreference.com | en.cppreference.com/cpp/language/storage_duration |
-| [^9] | Slab allocator - Wikipedia | en.wikipedia.org/wiki/Slab_allocation |
-| [^10] | TechInterview - HRT Guide 2026 | techinterview.org/companies/hudson-river-trading |
-| [^11] | SPSC queue - Wikipedia | en.wikipedia.org/wiki/Single-producer_consumer_queue |
-| [^12] | std::atomic - cppreference.com | en.cppreference.com/cpp/atomic/atomic |
-| [^13] | HRT Beat - Engineering and Interviewing | hudsonrivertrading.com/hrtbeat/engineering-and-interviewing-at-hrt |
-| [^14] | MESI protocol - Wikipedia | en.wikipedia.org/wiki/MESI_protocol |
-| [^15] | Total Store Order - Wikipedia | en.wikipedia.org/wiki/Total_store_order |
-| [^16] | OAVO - HRT Onsite Guide | oavoservice.com/en/articles/hrt-vo-onsite-five-rounds-guide |
-| [^17] | Luna paper (Linux networking overhead) | Referenced in HRT intern spotlight post |
-| [^18] | POSIX shared memory - man7.org | man7.org/linux/man-pages/man3/shm_open.3.html |
-| [^19] | HRT Beat - SmallGrid | hudsonrivertrading.com/hrtbeat/an-intro-to-smallgrid |
-| [^20] | MPMC queue - Wikipedia | en.wikipedia.org/wiki/Concurrent_data_structure |
-| [^21] | LMAX Disruptor | lmax-exchange.github.io/disruptor/ |
-| [^22] | ABA problem - Wikipedia | en.wikipedia.org/wiki/ABA_problem |
-| [^23] | Order book - Investopedia | investopedia.com/terms/o/order-book.asp |
-| [^24] | Linux kernel module - Wikipedia | en.wikipedia.org/wiki/Loadable_kernel_module |
-| [^25] | Character device - Linux kernel docs | docs.kernel.org/driver-api/char_devices.html |
-| [^26] | ioctl(2) - Linux man page | man7.org/linux/man-pages/man2/ioctl.2.html |
-| [^27] | CPU microarchitecture - Wikipedia | en.wikipedia.org/wiki/Microarchitecture |
-| [^28] | Branch prediction - Wikipedia | en.wikipedia.org/wiki/Branch_predictor |
-| [^29] | NUMA - Wikipedia | en.wikipedia.org/wiki/Non-uniform_memory_access |
-| [^30] | FlameGraph - Brendan Gregg | github.com/brendangregg/FlameGraph |
-| [^31] | perf - Linux perf wiki | perf.wiki.kernel.org |
-| [^32] | SIMD - Wikipedia | en.wikipedia.org/wiki/SIMD |
-| [^33] | Erasure coding - Wikipedia | en.wikipedia.org/wiki/Erasure_code |
-| [^34] | Reed-Solomon - Wikipedia | en.wikipedia.org/wiki/Reed%E2%80%93Solomon_error_correction |
-| [^35] | bpftrace - bpftrace.org | bpftrace.org |
+[^1]: RAII - cppreference.com: en.cppreference.com/cpp/language/raii
+[^2]: mmap(2) - Linux man page: man7.org/linux/man-pages/man2/mmap.2.html
+[^3]: malloc(3) - Linux man page: man7.org/linux/man-pages/man3/malloc.3.html
+[^4]: Huge Pages - HRT Beat: hudsonrivertrading.com/hrtbeat/low-latency-optimization-part-1
+[^5]: HRT Huge Pages Blog Post: hudsonrivertrading.com/hrtbeat/low-latency-optimization-part-1
+[^6]: TLB - Wikipedia: en.wikipedia.org/wiki/Translation_lookaside_buffer
+[^7]: CPU Caches - Ulrich Drepper: people.freebsd.org/~lstewart/articles/cpumemory.pdf
+[^8]: Thread-local storage - cppreference.com: en.cppreference.com/cpp/language/storage_duration
+[^9]: Slab allocator - Wikipedia: en.wikipedia.org/wiki/Slab_allocation
+[^10]: TechInterview - HRT Guide 2026: techinterview.org/companies/hudson-river-trading
+[^11]: SPSC queue - Wikipedia: en.wikipedia.org/wiki/Single-producer_consumer_queue
+[^12]: std::atomic - cppreference.com: en.cppreference.com/cpp/atomic/atomic
+[^13]: HRT Beat - Engineering and Interviewing: hudsonrivertrading.com/hrtbeat/engineering-and-interviewing-at-hrt
+[^14]: MESI protocol - Wikipedia: en.wikipedia.org/wiki/MESI_protocol
+[^15]: Total Store Order - Wikipedia: en.wikipedia.org/wiki/Total_store_order
+[^16]: OAVO - HRT Onsite Guide: oavoservice.com/en/articles/hrt-vo-onsite-five-rounds-guide
+[^17]: Luna paper (Linux networking overhead): Referenced in HRT intern spotlight post
+[^18]: POSIX shared memory - man7.org: man7.org/linux/man-pages/man3/shm_open.3.html
+[^19]: HRT Beat - SmallGrid: hudsonrivertrading.com/hrtbeat/an-intro-to-smallgrid
+[^20]: MPMC queue - Wikipedia: en.wikipedia.org/wiki/Concurrent_data_structure
+[^21]: LMAX Disruptor: lmax-exchange.github.io/disruptor/
+[^22]: ABA problem - Wikipedia: en.wikipedia.org/wiki/ABA_problem
+[^23]: Order book - Investopedia: investopedia.com/terms/o/order-book.asp
+[^24]: Linux kernel module - Wikipedia: en.wikipedia.org/wiki/Loadable_kernel_module
+[^25]: Character device - Linux kernel docs: docs.kernel.org/driver-api/char_devices.html
+[^26]: ioctl(2) - Linux man page: man7.org/linux/man-pages/man2/ioctl.2.html
+[^27]: CPU microarchitecture - Wikipedia: en.wikipedia.org/wiki/Microarchitecture
+[^28]: Branch prediction - Wikipedia: en.wikipedia.org/wiki/Branch_predictor
+[^29]: NUMA - Wikipedia: en.wikipedia.org/wiki/Non-uniform_memory_access
+[^30]: FlameGraph - Brendan Gregg: github.com/brendangregg/FlameGraph
+[^31]: perf - Linux perf wiki: perf.wiki.kernel.org
+[^32]: SIMD - Wikipedia: en.wikipedia.org/wiki/SIMD
+[^33]: Erasure coding - Wikipedia: en.wikipedia.org/wiki/Erasure_code
+[^34]: Reed-Solomon - Wikipedia: en.wikipedia.org/wiki/Reed%E2%80%93Solomon_error_correction
+[^35]: bpftrace - bpftrace.org: bpftrace.org
