@@ -1,11 +1,11 @@
 ---
-title: "Foundational Knowledge Synthesis for Software Engineers at Webex"
+title: "Foundational Knowledge Synthesis for Software Engineers at Jane Street"
 date: 2026-07-09
 weight: 3
 bookHidden: true
 ---
 
-# Foundational Knowledge Synthesis for Linux Engineers at Webex
+# Foundational Knowledge Synthesis for Linux Engineers at Jane Street
 
 ## Table of Contents
 

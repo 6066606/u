@@ -5,7 +5,7 @@ weight: 3
 bookHidden: true
 ---
 
-# Foundational Knowledge Synthesis for Software Engineers at StraitsX
+# Foundational Knowledge Synthesis for Software Engineers at Webex
 
 ## Table of Contents
 
