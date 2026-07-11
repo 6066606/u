@@ -1,11 +1,11 @@
 ---
-title: "Portfolio Project Recommendations for StraitsX Backend Engineer (Card Issuing)"
+title: "Portfolio Preparation Guide for Backend Engineers at StraitsX (Card Issuing)"
 date: 2026-07-11
 weight: 2
 bookHidden: true
 ---
 
-# Portfolio Project Recommendations for StraitsX Backend Engineer (Card Issuing)
+# Portfolio Preparation Guide for Backend Engineers at StraitsX (Card Issuing)
 
 ## Table of Contents
 

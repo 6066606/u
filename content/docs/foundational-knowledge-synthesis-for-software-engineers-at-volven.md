@@ -5,7 +5,7 @@ weight: 3
 bookHidden: true
 ---
 
-# Foundational Knowledge Synthesis for Software Engineering at Volven
+# Foundational Knowledge Synthesis for Software Engineers at Volven
 
 ## Table of Contents
 

@@ -1,11 +1,11 @@
 ---
-title: "Portfolio Preparation Guide for Low-Level Systems Engineer at HRT"
+title: "Portfolio Preparation Guide for Low-Level Systems Engineers at HRT"
 date: 2026-07-11
 weight: 2
 bookHidden: true
 ---
 
-# Portfolio Preparation Guide for Low-Level Systems Engineer at HRT
+# Portfolio Preparation Guide for Low-Level Systems Engineers at HRT
 
 ## Table of Contents
 

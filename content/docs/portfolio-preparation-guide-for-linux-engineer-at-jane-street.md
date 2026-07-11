@@ -1,11 +1,11 @@
 ---
-title: "Portfolio Preparation Guide for Linux Engineer at Jane Street"
+title: "Portfolio Preparation Guide for Linux Engineers at Jane Street"
 date: 2026-07-09
 weight: 2
 bookHidden: true
 ---
 
-# Portfolio Preparation Guide for Linux Engineer at Jane Street
+# Portfolio Preparation Guide for Linux Engineers at Jane Street
 
 ## Table of Contents
 

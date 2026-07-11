@@ -5,7 +5,7 @@ weight: 3
 bookHidden: true
 ---
 
-# The Complete Software Engineering Knowledge Synthesis
+# Foundational Knowledge Synthesis for Software Engineers at Uber
 
 ## Table of Contents
 

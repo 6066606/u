@@ -1,5 +1,5 @@
 ---
-title: "Foundational Knowledge Synthesis for Software Engineers at Jane Street"
+title: "Foundational Knowledge Synthesis for Linux Engineers at Jane Street"
 date: 2026-07-09
 weight: 3
 bookHidden: true

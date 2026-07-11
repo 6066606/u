@@ -1,5 +1,5 @@
 ---
-title: "Foundational Knowledge Synthesis for Software Engineering at Vimeo"
+title: "Foundational Knowledge Synthesis for Software Engineers at Vimeo"
 date: 2026-07-11
 weight: 1
 bookHidden: true
