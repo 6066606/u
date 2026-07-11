@@ -2,6 +2,7 @@
 title: "Foundational Knowledge Synthesis for Software Engineers at StraitsX"
 date: 2026-07-09
 weight: 3
+bookHidden: true
 ---
 
 # Foundational Knowledge Synthesis for Software Engineers at StraitsX
