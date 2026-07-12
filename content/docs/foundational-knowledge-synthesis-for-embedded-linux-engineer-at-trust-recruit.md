@@ -25,20 +25,21 @@ bookHidden: true
   - [Governing Principles](#governing-principles)
 - [Main Body](#main-body)
   - [Part 1: Hardware Foundations](#part-1-hardware-foundations)
-    - [1.1 Processor Architectures](#11-processor-architectures)
-    - [1.2 System-on-Chip Design](#12-system-on-chip-design)
-    - [1.3 FPGA and Programmable Logic](#13-fpga-and-programmable-logic)
+    - [1.1 ARM Cortex-A/R/M Architecture Differences](#11-arm-cortex-arm-r-m-architecture-differences)
+    - [1.2 SoC Architecture](#12-soc-architecture)
+    - [1.3 FPGA Programmable Logic Fundamentals](#13-fpga-programmable-logic-fundamentals)
     - [1.4 Memory Systems](#14-memory-systems)
     - [1.5 Peripheral Interfaces](#15-peripheral-interfaces)
-    - [1.6 Hardware-Software Co-Design](#16-hardware-software-co-design)
+    - [1.6 Hardware-Software Co-Design Considerations](#16-hardware-software-co-design-considerations)
   - [Part 2: Operating Systems and Kernel](#part-2-operating-systems-and-kernel)
     - [2.1 Linux Kernel Architecture](#21-linux-kernel-architecture)
     - [2.2 Boot Process](#22-boot-process)
     - [2.3 Device Tree](#23-device-tree)
     - [2.4 Kernel Module Development](#24-kernel-module-development)
-    - [2.5 Process and Memory Management](#25-process-and-memory-management)
-    - [2.6 Filesystems](#26-filesystems)
-    - [2.7 Kernel Configuration and Cross-Compilation](#27-kernel-configuration-and-cross-compilation)
+    - [2.5 Process Management](#25-process-management)
+    - [2.6 Memory Management](#26-memory-management)
+    - [2.7 Embedded Filesystems](#27-embedded-filesystems)
+    - [2.8 Kernel Configuration](#28-kernel-configuration)
   - [Part 3: Embedded Linux Development](#part-3-embedded-linux-development)
     - [3.1 Build Systems](#31-build-systems)
     - [3.2 Root Filesystem Design](#32-root-filesystem-design)
@@ -47,58 +48,67 @@ bookHidden: true
     - [3.5 Power Management](#35-power-management)
     - [3.6 OTA Firmware Updates](#36-ota-firmware-updates)
   - [Part 4: Networking](#part-4-networking)
-    - [4.1 TCP/IP Fundamentals](#41-tcpip-fundamentals)
-    - [4.2 Linux Networking Subsystem](#42-linux-networking-subsystem)
+    - [4.1 TCP/IP Stack Fundamentals](#41-tcpip-stack-fundamentals)
+    - [4.2 Linux Networking Subsystem Architecture](#42-linux-networking-subsystem-architecture)
     - [4.3 Industrial Ethernet Protocols](#43-industrial-ethernet-protocols)
     - [4.4 Time-Sensitive Networking](#44-time-sensitive-networking)
     - [4.5 Network Device Drivers](#45-network-device-drivers)
     - [4.6 Serial Interfaces](#46-serial-interfaces)
-    - [4.7 Network Debugging and Security](#47-network-debugging-and-security)
+    - [4.7 Network Debugging Tools](#47-network-debugging-tools)
   - [Part 5: Safety, Reliability, and Fault Tolerance](#part-5-safety-reliability-and-fault-tolerance)
-    - [5.1 Functional Safety Standards](#51-functional-safety-standards)
-    - [5.2 Fault Tolerance Patterns](#52-fault-tolerance-patterns)
-    - [5.3 MISRA C and Coding Standards](#53-misra-c-and-coding-standards)
-    - [5.4 Static Analysis Tools](#54-static-analysis-tools)
-    - [5.5 Quality Assurance for Embedded Firmware](#55-quality-assurance-for-embedded-firmware)
+    - [5.1 Functional Safety Standards Overview](#51-functional-safety-standards-overview)
+    - [5.2 MISRA C:2023](#52-misra-c2023)
+    - [5.3 Fault Tolerance Patterns in Embedded Linux](#53-fault-tolerance-patterns-in-embedded-linux)
+    - [5.4 FDIR Architecture](#54-fdir-architecture)
+    - [5.5 Static Analysis Tools Comparison](#55-static-analysis-tools-comparison)
+    - [5.6 Software Safety Analysis Methods](#56-software-safety-analysis-methods)
+    - [5.7 Quality Assurance for Embedded Firmware](#57-quality-assurance-for-embedded-firmware)
   - [Part 6: Security in Embedded Systems](#part-6-security-in-embedded-systems)
     - [6.1 Secure Boot Chains](#61-secure-boot-chains)
     - [6.2 OTA Update Security](#62-ota-update-security)
     - [6.3 Supply Chain Security](#63-supply-chain-security)
     - [6.4 Firmware Security Best Practices](#64-firmware-security-best-practices)
-    - [6.5 Physical Security](#65-physical-security)
+    - [6.5 Cryptographic Primitives for Embedded](#65-cryptographic-primitives-for-embedded)
+    - [6.6 Secure Development Lifecycle](#66-secure-development-lifecycle)
+    - [6.7 Physical Security](#67-physical-security)
+    - [6.8 Common Embedded Vulnerabilities](#68-common-embedded-vulnerabilities)
   - [Part 7: Automation, CI/CD, and DevOps](#part-7-automation-cicd-and-devops)
-    - [7.1 CI/CD Pipeline Architecture](#71-cicd-pipeline-architecture)
-    - [7.2 Docker Containerization](#72-docker-containerization)
-    - [7.3 Hardware-in-the-Loop Testing](#73-hardware-in-the-loop-testing)
+    - [7.1 CI/CD Pipeline Architecture for Embedded Firmware](#71-cicd-pipeline-architecture-for-embedded-firmware)
+    - [7.2 Docker Containerization for Yocto Builds](#72-docker-containerization-for-yocto-builds)
+    - [7.3 Hardware-in-the-Loop (HIL) Testing Infrastructure](#73-hardware-in-the-loop-hil-testing-infrastructure)
     - [7.4 Artifact Management](#74-artifact-management)
   - [Part 8: Testing and Quality Assurance](#part-8-testing-and-quality-assurance)
-    - [8.1 Testing Pyramid](#81-testing-pyramid)
+    - [8.1 Testing Pyramid for Embedded](#81-testing-pyramid-for-embedded)
     - [8.2 Unit Testing Frameworks](#82-unit-testing-frameworks)
-    - [8.3 Integration and System Testing](#83-integration-and-system-testing)
-    - [8.4 Code Coverage and Static Analysis](#84-code-coverage-and-static-analysis)
-    - [8.5 Boundary and Stress Testing](#85-boundary-and-stress-testing)
+    - [8.3 Integration Testing Approaches](#83-integration-testing-approaches)
+    - [8.4 System Testing](#84-system-testing)
+    - [8.5 Code Coverage](#85-code-coverage)
+    - [8.6 Static Analysis Integration](#86-static-analysis-integration)
+    - [8.7 Boundary and Stress Testing on Constrained Targets](#87-boundary-and-stress-testing-on-constrained-targets)
   - [Part 9: Real-Time Systems](#part-9-real-time-systems)
     - [9.1 Real-Time Concepts](#91-real-time-concepts)
-    - [9.2 PREEMPT_RT](#92-preempt_rt)
-    - [9.3 Real-Time Scheduling](#93-real-time-scheduling)
-    - [9.4 Latency Measurement and Optimization](#94-latency-measurement-and-optimization)
-    - [9.5 PREEMPT_RT vs RTOS](#95-preempt_rt-vs-rtos)
+    - [9.2 PREEMPT_RT Patch Set](#92-preempt_rt-patch-set)
+    - [9.3 Real-Time Scheduling in Linux](#93-real-time-scheduling-in-linux)
+    - [9.4 Latency Measurement with cyclictest](#94-latency-measurement-with-cyclictest)
+    - [9.5 PREEMPT_RT vs RTOS Trade-offs](#95-preempt_rt-vs-rtos-trade-offs)
   - [Part 10: Programming Languages for Embedded](#part-10-programming-languages-for-embedded)
     - [10.1 C in Embedded Systems](#101-c-in-embedded-systems)
-    - [10.2 C++ in Embedded Systems](#102-c-in-embedded-systems)
+    - [10.2 Modern C++ in Embedded Systems](#102-modern-c-in-embedded-systems)
     - [10.3 Java in Embedded Systems](#103-java-in-embedded-systems)
-    - [10.4 Assembly, Python, and Scripting](#104-assembly-python-and-scripting)
+    - [10.4 Assembly Basics](#104-assembly-basics)
+    - [10.5 Python for Embedded](#105-python-for-embedded)
+    - [10.6 Scripting Languages for Automation](#106-scripting-languages-for-automation)
   - [Part 11: Version Control and Collaboration](#part-11-version-control-and-collaboration)
     - [11.1 Git Workflows for Embedded](#111-git-workflows-for-embedded)
     - [11.2 Code Review Processes](#112-code-review-processes)
     - [11.3 Documentation Practices](#113-documentation-practices)
     - [11.4 Hardware Team Collaboration](#114-hardware-team-collaboration)
   - [Part 12: Monitoring, Observability, and Troubleshooting](#part-12-monitoring-observability-and-troubleshooting)
-    - [12.1 Kernel Tracing](#121-kernel-tracing)
+    - [12.1 Linux Kernel Tracing](#121-linux-kernel-tracing)
     - [12.2 System Profiling](#122-system-profiling)
     - [12.3 Logging Infrastructure](#123-logging-infrastructure)
-    - [12.4 Hardware Debugging](#124-hardware-debugging)
-    - [12.5 Common Failure Modes](#125-common-failure-modes)
+    - [12.4 Hardware Debugging Tools](#124-hardware-debugging-tools)
+    - [12.5 Common Embedded Failure Modes](#125-common-embedded-failure-modes)
 - [Integration With Reference Document](#integration-with-reference-document)
 - [Learning Path](#learning-path)
 - [Cross-Reference Index](#cross-reference-index)
@@ -407,9 +417,40 @@ The Linux kernel is a monolithic kernel with loadable module support [^18]. This
 
 **Key Insight:** The monolithic-with-modules architecture is a deliberate trade-off: it provides better performance (no IPC overhead for subsystem calls) at the cost of kernel bugs potentially crashing the entire system. This is why kernel module development requires extreme disciplin
 
-... [OUTPUT TRUNCATED - 2111 chars omitted out of 52111 total] ...
+## 2.2 Boot Process
 
-cally systemd or BusyBox init depending on the image type [^24].
+The embedded Linux boot process is a multi-stage pipeline. The exact sequence varies by SoC vendor but follows a common pattern [^21]:
+
+```mermaid
+flowchart TD
+    A["Power-On Reset"] --> B["Boot ROM\n(fixed in silicon)"]
+    B --> C["SPL / FSBL\n(Secondary Program Loader)"]
+    C --> D["U-Boot\n(Primary Bootloader)"]
+    D --> E["Load kernel + DTB\nfrom storage or network"]
+    E --> F["Linux Kernel init"]
+    F --> G["Mount root filesystem"]
+    G --> H["Init process\n(PID 1)"]
+    H --> I["Userspace services"]
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style I fill:#9f9,stroke:#333,stroke-width:2px
+```
+
+### Stage Details
+
+**Boot ROM (Stage 1):** Mask ROM code burned into silicon at manufacturing time. Cannot be modified. Loads the SPL from boot media (eMMC, SD, QSPI, NAND) based on boot pin configuration [^21].
+
+[^21]: Texas Instruments, "AM335x TRM, Chapter 26 - System Boot (SPRUH73Q)." AMD/Xilinx, "Zynq-7000 TRM, Chapter 6 - Boot and Bootgication (UG585)."
+
+**SPL / FSBL (Stage 2):** SoC-vendor-specific code that initializes the minimum hardware required to load U-Boot. On TI, the SPL (Secondary Program Loader) configures DDR clocks and PLLs. On Xilinx, the FSBL (First Stage Boot Loader) initializes the PS and optionally programs the PL bitstream [^22].
+
+[^22]: U-Boot Documentation, "SPL," https://docs.u-boot.org/en/latest/develop/spl.html.
+
+**U-Boot (Stage 3):** The primary bootloader. Responsibilities include DRAM initialization verification, loading the Linux kernel image (zImage/Image), device tree blob (DTB), and initial ramdisk (if used) from boot media, and passing control to the kernel with the correct `bootargs` (kernel command line) and DTB memory address [^23].
+
+[^23]: U-Boot Project, "U-Boot Documentation," https://docs.u-boot.org/en/latest/.
+
+**Kernel init (Stage 4):** The kernel decompresses, initializes drivers based on the device tree, mounts the root filesystem (specified by `root=` in bootargs), and starts the init process (PID 1). On TI PSDK builds, `init` is typically systemd or BusyBox init depending on the image type [^24].
 
 [^24]: Linux kernel Documentation, "Kernel Parameters," https://www.kernel.org/doc/html/latest/admin-guide/kernel-parameters.html.
 
@@ -1256,10 +1297,159 @@ Functional safety standards define requirements for reducing risk to an acceptab
 
 The V-model is mandated by IEC 61508 and ISO 26262 for safety-related development[^49]. It ensures bidirectional traceability between requirements and verification:
 
-```
-Requirements Definition ---------> System Acceptance Test
+```mermaid
+graph TD
+    %% Left Side: Development Phases
+    RD["Requirements Definition"] --> SD["System Design"]
+    SD --> SA["Software Architecture"]
+    SA --> IC["Implementation & Coding"]
 
-... [OUTPUT TRUNCATED - 5873 chars omitted out of 55873 total] ...
+    %% Right Side: Testing Phases
+    IC --> UT["Unit Testing"]
+    UT --> IT["Integration Testing"]
+    IT --> SAT["System Acceptance Testing"]
+
+    %% Horizontal Verification & Validation Relationships
+    RD -.-> SAT
+    SD -.-> IT
+    SA -.-> UT
+
+    %% Styling to emphasize the V-shape
+    classDef dev fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef test fill:#bbf,stroke:#333,stroke-width:2px;
+    classDef code fill:#bfb,stroke:#333,stroke-width:2px;
+    
+    class RD,SD,SA dev;
+    class UT,IT,SAT test;
+    class IC code;
+```
+
+Each left-side phase has a corresponding right-side verification phase. Safety standards require bidirectional traceability: every test case must trace to a requirement, and every requirement must have at least one test case[^53].
+
+## 5.2 MISRA C:2023
+
+MISRA C:2023 defines coding guidelines for safety-critical C programming[^54]. The guidelines are classified into three categories:
+
+### Rule Categories
+
+| Category | Count | Enforcement | Consequence of Non-Compliance |
+|---|---|---|---|
+| Mandatory | ~14 | Must be followed; no deviation allowed | Safety hazard; code must be corrected |
+| Required | ~143 | Must be followed; deviation requires documented justification | Potential safety hazard; deviation record required |
+| Advisory | ~44 | Should be followed; deviation permitted with rationale | Reduced portability/readability |
+
+**Key MISRA C:2023 changes from C:2012[^55]:**
+- Full support for C11/C17/C23 features
+- New rules for dynamic memory allocation
+- Updated rules for type safety and initialization
+- Improved guidance on concurrency (threading)
+
+### Deviation Management
+
+MISRA mandates a formal deviation process when a rule cannot be followed[^54]:
+
+1. **Justification:** Technical rationale explaining why compliance is impractical or harmful
+2. **Analysis:** Risk assessment of the non-compliance
+3. **Mitigation:** Measures to reduce risk from the deviation
+4. **Documentation:** Recorded in a deviation record with approval by responsible engineer
+
+```bash
+# Run cppcheck with MISRA addon
+cppcheck --addon=misra --addon-misra-joint-path=/path/to/misra.json src/
+
+# Run Polyspace for MISRA C:2023 analysis
+polyspace-bug-finder -sources src/ -misra3 2023 -main-file main.c
+```
+
+> **Key Insight:** MISRA C compliance is not about eliminating all warnings -- it is about establishing a systematic process for managing deviation from coding rules. A project with documented, justified deviations is more compliant than one that ignores warnings.
+
+## 5.3 Fault Tolerance Patterns in Embedded Linux
+
+### Watchdog Timers
+
+The Linux kernel watchdog subsystem provides a standardized interface to hardware watchdog timers[^56]. The architecture involves three layers:
+
+```
+Hardware Watchdog Timer
+    |
+Linux Watchdog Driver (/dev/watchdog)
+    |
+Userspace Watchdog Daemon (daemon)
+```
+
+**Magic close mechanism:** When the user writes the magic character 'V' (0x56) before closing `/dev/watchdog`, the watchdog is disabled. This prevents accidental disablement. The `CONFIG_WATCHDOG_NOWAYOUT` kernel option (set at compile time) prevents disabling the watchdog entirely -- once started, the only way to stop it is a system reset[^56].
+
+```c
+/* Watchdog userspace daemon example */
+int fd = open("/dev/watchdog", O_WRONLY);
+if (fd < 0) { /* Handle error */ }
+
+/* Periodic ping in main loop */
+while (running) {
+    write(fd, "\0", 1);  /* Pet the watchdog */
+    sleep(5);            /* Reset counter: typically 10-30s timeout */
+}
+close(fd);  /* Sends magic 'V' only if magic close is enabled */
+```
+
+**Pretimeout notification:** The pretimeout fires before the actual timeout, generating an NMI (Non-Maskable Interrupt) or interrupt. This allows the system to log diagnostic information or perform a controlled shutdown before the hardware reset[^57]:
+
+```bash
+# Configure pretimeout via sysfs
+echo 5 > /sys/class/watchdog/watchdog0/pretimeout  # 5s before reset
+```
+
+### ECC and the EDAC Subsystem
+
+The Linux EDAC (Error Detection And Correction) subsystem monitors memory controller errors in real-time[^58]. SECDED (Single Error Correction, Double Error Detection) is the standard ECC mode:
+
+| Error Type | Detection | Correction | EDAC Action |
+|---|---|---|---|
+| Single-bit (CE) | Yes | Yes (auto) | Log and continue |
+| Double-bit (UE) | Yes | No | Log; may page-offline affected memory |
+| Multi-bit (UE+FATAL) | Yes | No | Kernel panic; require reboot |
+
+```bash
+# Check EDAC status
+edac-util -s
+
+# View memory errors via sysfs
+cat /sys/devices/system/edac/mc/mc0/ce_count    # Corrected errors
+cat /sys/devices/system/edac/mc/mc0/ue_count    # Uncorrected errors
+cat /sys/devices/system/edac/mc/mc0/ce_pin      # Error pin info
+```
+
+> **Common Pitfall:** ECC memory requires ECC-capable DRAM controllers. Most consumer-grade SoCs (including some TI Sitara variants) do not support ECC. The AM62x with DDR4 supports ECC; verify this before selecting a platform for safety-critical applications[^59].
+
+### Redundant Communication Paths
+
+Production-grade industrial systems employ redundant communication to achieve high availability[^60]:
+
+- **PRP (Parallel Redundancy Protocol, IEC 62439-3 Clause 4):** Sends identical frames simultaneously over two independent networks. Zero recovery time on single network failure.
+- **HSR (High-availability Seamless Redundancy, IEC 62439-3 Clause 5):** Sends frames in both directions on a ring. Single hop failure recovery with one frame duplication.
+- **Dual Ethernet with bonding:** Linux NIC bonding (modes 1-active-backup, 4-LACP) provides OS-level redundancy:
+
+```bash
+# Configure active-backup bonding for redundancy
+modprobe bonding mode=1 miimon=100
+ip link set bond0 up
+ifenslave bond0 eth0 eth1
+```
+
+### State Machine Recovery
+
+Embedded systems must validate state machine transitions to prevent illegal states that could lead to undefined behavior[^61]. A robust state machine implementation:
+
+```c
+typedef enum {
+    STATE_INIT,
+    STATE_RUNNING,
+    STATE_DEGRADED,
+    STATE_SAFE,
+    STATE_FAULT,
+    STATE_RECOVERY,
+    STATE_MAX
+} system_state_t;
 
 /* Valid transitions matrix */
 static const bool valid_transition[STATE_MAX][STATE_MAX] = {
@@ -2155,7 +2345,7 @@ C remains the dominant language for embedded firmware and Linux kernel developme
 
 **MISRA C:2023** compliance is mandatory for safety-critical embedded code. MISRA defines 143 mandatory and required rules and 44 advisory rules that restrict dangerous C patterns. Key rules include: no dynamic memory allocation in safety-critical code, explicit type casting for all conversions, and single-entry/single-exit functions[^85][^132].
 
-### C++ in Embedded Systems
+### Modern C++ in Embedded Systems
 
 Modern C++ (C++14/17 subsets) is increasingly used for embedded applications where code complexity exceeds what C can manage cleanly. The key principles for embedded C++ are:
 
