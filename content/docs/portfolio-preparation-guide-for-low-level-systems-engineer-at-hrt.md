@@ -507,9 +507,9 @@ graph TB
         P2[Producer 2] -->|CAS head| Q
     end
     subgraph "Ring Buffer"
-        Q -->|slot[i].sequence| S1[Slot 0: seq + data]
-        Q -->|slot[i].sequence| S2[Slot 1: seq + data]
-        Q -->|slot[i].sequence| S3[Slot N: seq + data]
+        Q -->|"slot[i].sequence"| S1["Slot 0: seq + data"]
+        Q -->|"slot[i].sequence"| S2["Slot 1: seq + data"]
+        Q -->|"slot[i].sequence"| S3["Slot N: seq + data"]
     end
     subgraph "Consumers"
         Q -->|CAS tail| C1[Consumer 1]
@@ -700,7 +700,7 @@ HRT's "Low Level C++" role explicitly mentions "kernel programming" as a key ski
 ```mermaid
 graph TB
     subgraph "User Space"
-        A[User Application] -->|write data| B[/dev/hrt_circ]
+        A[User Application] -->|write data| B["/dev/hrt_circ"]
         A -->|read data| B
     end
     subgraph "Kernel Space"

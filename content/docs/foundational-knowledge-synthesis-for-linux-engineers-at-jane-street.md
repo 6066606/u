@@ -377,10 +377,10 @@ The shell reads configuration from multiple files at startup. Understanding the 
 
 ```mermaid
 graph TD
-    A[Login Shell] --> B[/etc/profile]
-    B --> C[~/.bash_profile or ~/.profile]
-    C --> D[~/.bashrc -- if sourced by above]
-    E[Non-Login Interactive Shell] --> F[~/.bashrc]
+    A[Login Shell] --> B["/etc/profile"]
+    B --> C["~/.bash_profile or ~/.profile"]
+    C --> D["~/.bashrc -- if sourced by above"]
+    E[Non-Login Interactive Shell] --> F["~/.bashrc"]
     G[Non-Login Non-Interactive] --> H[Inherits parent environment]
     H --> I[Sourced files if BASH_ENV is set]
 ```

@@ -636,7 +636,7 @@ Jane Street's Linux Engineers use profiling tools daily[^25]. Their Performance 
 graph TD
     subgraph Data Collection Layer
         A[perf event listener - C] --> B[Ring Buffer]
-        C[/proc reader - Python] --> B
+        C["/proc reader - Python"] --> B
         D[eBPF tracepoints] --> B
     end
     subgraph Aggregation Engine
@@ -1298,7 +1298,7 @@ graph TD
         A3[Agent - Host N] -->|HTTP| D
     end
     subgraph Agent Internals
-        A1 --> B1[/proc reader]
+        A1 --> B1["/proc reader"]
         A1 --> B2[CPU metrics]
         A1 --> B3[Memory metrics]
         A1 --> B4[Disk I/O metrics]

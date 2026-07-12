@@ -653,9 +653,9 @@ The **Circuit Breaker pattern** was formalized by Michael Nygard in *Release It!
 stateDiagram-v2
     [*] --> Closed
     Closed --> Open : Failure threshold exceeded
-    Open --> Half-Open : Timeout expires
-    Half-Open --> Closed : Probe request succeeds
-    Half-Open --> Open : Probe request fails
+    Open --> HalfOpen : Timeout expires
+    HalfOpen --> Closed : Probe request succeeds
+    HalfOpen --> Open : Probe request fails
 ```
 
 [^79]: Nygard, Michael. *Release It! Design and Deploy Production-Ready Software*, 2nd edition. Pragmatic Bookshelf, 2018. ISBN 978-1680502398.
