@@ -2602,13 +2602,22 @@ OPcache[^opcache] mengkompilasi skrip PHP menjadi *opcode* bytecode dan menyimpa
 |-----------|--------|-----------------|
 | `opcache.enable` | Mengaktifkan OPcache | **Wajib `1` di produksi.** Tanpa ini, setiap permintaan mengkompilasi ulang semua berkas PHP |
 | `opcache.memory_consumption` | Ukuran memori *shared* untuk *opcode* | 128--256 MB untuk aplikasi Laravel menengah. Terlalu rendah = *cache eviction* yang mengembalikan biaya kompilasi |
+| `opcache.interned_strings_buffer` | Ukuran buffer untuk *interned strings* | 16 MB+ (berbagi antar *pool*; maksimum 32767 pada PHP 8.4+ 64-bit) |
 | `opcache.max_accelerated_files` | Jumlah berkas yang di-*cache* | Sesuaikan dengan jumlah berkas di `vendor/` dan `app/`. Laravel + *dependency* biasanya 2000--5000 berkas |
 | `opcache.validate_timestamps` | Periksa perubahan berkas | `0` di produksi (kinerja lebih baik); `1` di *development* |
 | `opcache.revalidate_freq` | Frekuensi pemeriksaan perubahan | `0` jika `validate_timestamps=1`; abaikan jika `validate_timestamps=0` |
 | `opcache.jit` | JIT[^jit] compiler mode | `1255` (mode *tracing*) untuk PHP 8.x; dampak terukur bervariasi berdasarkan beban kerja |
 | `opcache.jit_buffer_size` | Ukuran buffer JIT | 64--128 MB jika JIT aktif; `0` jika tidak menggunakan JIT |
+| `opcache.huge_code_pages` | Gunakan *huge pages* untuk kode | `1` jika OS mendukung (Linux); meningkatkan kinerja TLB[^tlb] |
+| `realpath_cache_size` | Ukuran *cache* jalur berkas | 4096 KB (4 MB); *default* 16 KB terlalu kecil untuk struktur direktori Laravel |
+| `realpath_cache_ttl` | TTL *cache* jalur | 600 detik (default 120 detik); cukup untuk produksi |
+| `memory_limit` | Batas memori per *request* | 256 MB; Laravel baseline ~20--50 MB |
+
+> **Catatan PHP 8.4+:** JIT diaktifkan secara *default* sejak PHP 8.4 (`opcache.jit_buffer_size` *default* 64MB). Untuk PHP 8.3 dan sebelumnya, JIT harus diaktifkan secara manual.
 
 **Peringatan operasional:** Setelah `validate_timestamps=0` diaktifkan di produksi, perubahan kode tidak ter-*reflect* sampai OPcache di-*flush* (`opcache_reset()` atau *restart* PHP-FPM). Ini harus ditangani oleh proses *deployment*, bukan secara manual.
+
+**Peringatan `open_basedir`:** Pembatasan `open_basedir` secara **total menonaktifkan** `realpath_cache` (bug PHP #52312 yang terdokumentasi). Ini menyebabkan degradasi kinerja yang signifikan karena setiap *include/require* memerlukan pencarian jalur berkas secara penuh. Jika menggunakan `open_basedir`, pastikan direktori Laravel termasuk dalam daftar yang diizinkan.
 
 ### Dampak JIT Compiler pada Beban Kerja Web
 
@@ -2853,6 +2862,15 @@ Pola paling umum di Laravel:
 $value = Cache::remember("user:{$id}:profile", 3600, function () use ($id) {
     return User::with('profile')->find($id);
 });
+```
+
+Laravel 11+ juga menyediakan pola *stale-while-revalidate* melalui `Cache::flexible()`:
+
+```php
+// 0-5 detik: sajikan dari cache
+// 5-10 detik: sajikan cache usang + perbarui di latar belakang
+// > 10 detik: blokir hingga data baru tersedia
+$value = Cache::flexible('users', [5, 10], fn() => DB::table('users')->get());
 ```
 
 **Masalah yang harus diwaspadai:**
@@ -3209,7 +3227,6 @@ Berikut adalah daftar prioritas apa yang harus dipelajari, diuji, di-*benchmark*
 [^eager-loading]: ***Eager loading*** -- teknik memuat relasi model bersamaan dengan model utama dalam kueri terpisah yang dioptimalkan, untuk menghindari masalah N+1.
 [^queue]: **Antrean (*queue*)** -- mekanisme untuk menunda eksekusi tugas ke proses latar belakang, memungkinkan *request* HTTP selesai tanpa menunggu tugas selesai.
 [^ttl]: **TTL (*Time To Live*)** -- durasi (dalam detik) sebelum data *cache* dianggap kedaluwarsa dan perlu diperbarui.
-[^cache-invalidation]: ***Cache invalidation*** -- proses menghapus atau memperbarui data *cache* ketika data sumber berubah.
 [^redis]: **Redis** -- penyimpanan data dalam memori yang sering digunakan sebagai *cache*, *session store*, dan *queue broker*.
 [^denormalization]: **Denormalisasi** -- teknik menambahkan redundansi data ke dalam skema basis data untuk menghindari JOIN yang mahal.
 [^octane]: **Laravel Octane** -- paket Laravel yang menyajikan aplikasi menggunakan *server* *long-running* (Swoole atau RoadRunner) alih-alih PHP-FPM.
@@ -3492,5 +3509,7 @@ Berikut adalah daftar prioritas apa yang harus dipelajari, diuji, di-*benchmark*
 [^observability]: **Observabilitas** -- kemampuan untuk memahami keadaan internal sistem dari *output* eksternalnya (log, metrik, *traces*).
 
 [^cache-invalidation]: ***Cache invalidation*** -- proses menghapus atau memperbarui data *cache* ketika data sumber berubah.
+
+[^tlb]: **TLB (*Translation Lookaside Buffer*)** -- *cache* perangkat keras yang memetakan alamat virtual ke alamat fisik. *Huge pages* mengurangi jumlah entri TLB yang diperlukan, meningkatkan kinerja akses memori.
 
 [^yagni]: **YAGNI (You Aren't Gonna Need It)** -- prinsip yang menyatakan bahwa fungsionalitas tidak boleh ditambahkan sampai benar-benar dibutuhkan.
